@@ -21,14 +21,12 @@ len(files)
 # Extract features from filename
 # --------------------------------------------------------------
 
-data_path = "../../data/raw/MetaMotion\\"
-f = files[0]
+data_path = "../../data/raw/MetaMotion\\" # Here I had to tweak the path a little 
+f = files[1]
 
 participant = f.split("-")[0].replace(data_path,"")
-
 label = f.split("-")[1]
-
-category = f.split("-")[2].rstrip("123")
+category = f.split("-")[2].rstrip("123").rstrip("_MetaWear_2019")
 
 df = pd.read_csv(f)
 
@@ -40,6 +38,19 @@ df["category"] = category
 # Read all files
 # --------------------------------------------------------------
 
+acc_df = pd.DataFrame()
+gyr_df = pd.DataFrame()
+
+acc_set = 1
+gyr_set = 1
+
+for f in files:
+    
+    participant = f.split("-")[0].replace(data_path,"")
+    label = f.split("-")[1]
+    category = f.split("-")[2].rstrip("123")
+    
+    print(category)
 
 # --------------------------------------------------------------
 # Working with datetimes
